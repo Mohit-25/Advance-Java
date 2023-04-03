@@ -22,7 +22,7 @@ public class SignUp extends HttpServlet
 		out.print("<html><body>");
 		
 		String fn="[a-zA-Z]+";
-		String em="[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$";
+		String em="[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,3}$";
 		String ps="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}";
 		boolean isError=false;
 		StringBuffer error=new StringBuffer(" ");
@@ -41,15 +41,19 @@ public class SignUp extends HttpServlet
 			isError=true;
 			error.append("<br>Please Enter Atleast 2 Characters");
 		}
+		
 		if(emailId==null || emailId.trim().length()==0)
 		{
 			isError=true;
 			error.append("<br> Please Enter Email id");
 		}
-		else if(emailId.matches(em)==false)
+		else
 		{
-			isError=true;
-			error.append("<br>Please Enter valid Email Address");
+			if(emailId.matches(em)==false)
+			{
+			   isError=true;
+			   error.append("<br>Please Enter valid Email Address");
+			}
 			
 		}
 		if(password==null || password.trim().length()==0)
@@ -57,10 +61,13 @@ public class SignUp extends HttpServlet
 			isError=true;
 			error.append("<br> Please Enter Password");
 		}
-		else if(password.matches(ps)==false)
+		else 
 		{
+			if(password.matches(ps)==false)
+			{
 			isError=true;
 			error.append("<br>Please Enter valid Password");
+			}
 			
 		}
 		
