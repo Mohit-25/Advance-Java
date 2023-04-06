@@ -24,5 +24,9 @@
    <servlet-name>CalcServlet</servlet-name>
    <url-pattern>/Calc</url-pattern>
   </servlet-mapping>
+  
+
 </web-app>
+
+
 

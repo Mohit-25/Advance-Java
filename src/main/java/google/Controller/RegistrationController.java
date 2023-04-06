@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import google.Bean.UserBean;
+import google.Dao.UserDao;
 import google.util.UserConnection;
 
 
@@ -22,7 +24,7 @@ public class RegistrationController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		int record1=0;
+		
 		
 		String firstName= req.getParameter("firstName");
 		String lastName=req.getParameter("lastName");
@@ -158,58 +160,38 @@ public class RegistrationController extends HttpServlet{
 			
 		}
 		
-		
+		UserBean bean=new UserBean();
+		bean.setFirstName(firstName);
+	    bean.setLastName(lastName);
+	    bean.setEmailId(emailId);
+	    bean.setPassword(password);
+	    bean.setCity(city);
+	    bean.setGender(gender);
+	    bean.setH1(h1);
+	    bean.setH2(h2);
+	    bean.setH3(h3);
 		
 		RequestDispatcher rd=null;
+//		UserDao users=null;
 		
 		if(isError)
 		{
 //			req.setAttribute("error", error.toString());
+			req.setAttribute("bean", bean);
 			rd=req.getRequestDispatcher("Registration.jsp");
-			req.setAttribute("firstName", firstName);
-			req.setAttribute("lastName", lastName);
-			req.setAttribute("emailId",emailId);
-			req.setAttribute("Password", password);
-			req.setAttribute("Cpassword", cpassword);
-			req.setAttribute("City", city);
-			req.setAttribute("Gender", gender);
-			req.setAttribute("H1", h1);
-			req.setAttribute("H2", h2);
-			req.setAttribute("H3", h3);
+			
 
 			
 			
 		}
 		else
 		{
-			
-			try {
-				//store into database 
-				Connection con = UserConnection.getConnection();
-				//sql 
-				//Statement
-				//PreparedStatement
-				//CallableStatement 
-				PreparedStatement pstm = con.prepareStatement("insert into users(firstName,lastName,emailId,password,city,gender,h1,h2,h3) values (?,?,?,?,?,?,?,?,?) ");
-				pstm.setString(1,firstName);
-				pstm.setString(2, lastName);
-				pstm.setString(3, emailId);
-				pstm.setString(4, password);
-				pstm.setString(5, city);
-				pstm.setString(6, gender);
-				pstm.setString(7, h1);
-				pstm.setString(8, h2);
-				pstm.setString(9, h3);
-	
-				record1 = pstm.executeUpdate(); //db -> 	1 -> inserted , updated , deleted 
-				
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			
-			}
-			out.print("record= "+record1);
-//			rd = req.getRequestDispatcher("Login.jsp");
+		
+		    
+		    
+		    
+		    new UserDao().addUser(bean);
+			rd = req.getRequestDispatcher("Login.jsp");
 			
 			
 //		    out.print("firstName= " +firstName);
@@ -234,8 +216,6 @@ public class RegistrationController extends HttpServlet{
 //		    	out.print("<br> 3rd Hobby= " +h3);
 //		    }
 		    
-		
-		
 		
          }
 		

@@ -26,6 +26,8 @@
 	   String city=(String)request.getAttribute("city");
 	   String gender=(String)request.getAttribute("gender");
 	   String hobby=(String)request.getAttribute("hobby");
+	   
+	   
 	
 	   
 	   
@@ -33,13 +35,13 @@
 	%> 
 	
 	
-	 First Name: <input type="text" name="firstName" value="${firstName}"><span class='error'><%=firstname==null?"": " "+firstname %> </span><br/><br/>
-	 Last Name:  <input type="text" name="lastName" value="${lastName}"><span class='error'><%=lastname==null?"":lastname %> </span><br/><br/>
-	 Email Id:   <input type="text" name="emailId" value="${emailId}"><span class='error'><%=email==null?"":email %> </span><br/><br/>
-	 Password:   <input type="text" name="password" value="${Password}"><span class='error'><%=password==null?"":password %> </span><br/><br/>
-	 Confirm Password: <input type="text" name="cpassword" value="${Cpassword}"><span class='error'><%=cpassword==null?"":cpassword %> </span><br/><br/>
+	 First Name: <input type="text" name="firstName" value="${bean.firstName}"><span class='error'><%=firstname==null?"": " "+firstname %> </span><br/><br/>
+	 Last Name:  <input type="text" name="lastName" value="${bean.lastName}"><span class='error'><%=lastname==null?"":lastname %> </span><br/><br/>
+	 Email Id:   <input type="text" name="emailId" value="${bean.emailId}"><span class='error'><%=email==null?"":email %> </span><br/><br/>
+	 Password:   <input type="text" name="password" ><span class='error'><%=password==null?"":password %> </span><br/><br/>
+	 Confirm Password: <input type="text" name="cpassword"><span class='error'><%=cpassword==null?"":cpassword %> </span><br/><br/>
 	 City: <select name="city">
-	        <option value="select" ">Select</option>
+	        <option value="select">Select</option>
             <option  value="Ahmedabad">Ahmedabad</option>
             <option value="surat" >Surat</option>
             <option value="vadodara">Vadodara</option>
