@@ -190,6 +190,7 @@ public class RegistrationController extends HttpServlet{
 		    
 		    
 		    
+			
 		    new UserDao().addUser(bean);
 			rd = req.getRequestDispatcher("Login.jsp");
 			
